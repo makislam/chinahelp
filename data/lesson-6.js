@@ -1,0 +1,237 @@
+window.LESSONS = window.LESSONS || {};
+window.LESSONS[6] = {
+  lesson: 6,
+  titleZh: "我们去游泳，好吗", titlePy: "Wǒmen qù yóuyǒng, hǎo ma", titleEn: "Shall we go swimming? (Review)",
+  vocab: [
+    {zh:"去", py:"qù", pos:"v.", en:"to go"},
+    {zh:"游泳", py:"yóuyǒng", pos:"v.o.", en:"to swim"},
+    {zh:"昨天", py:"zuótiān", pos:"n.", en:"yesterday"},
+    {zh:"京剧", py:"jīngjù", pos:"n.", en:"Beijing opera"},
+    {zh:"怎么样", py:"zěnmeyàng", pos:"qpr.", en:"how is it?"},
+    {zh:"有意思", py:"yǒu yìsi", pos:"ie.", en:"interesting"},
+    {zh:"今天", py:"jīntiān", pos:"n.", en:"today"},
+    {zh:"天", py:"tiān", pos:"n.", en:"day"},
+    {zh:"天气", py:"tiānqì", pos:"n.", en:"weather"},
+    {zh:"太", py:"tài", pos:"adv.", en:"too; extremely"},
+    {zh:"什么", py:"shénme", pos:"qpr.", en:"what"},
+    {zh:"时候", py:"shíhou", pos:"n.", en:"time; moment"},
+    {zh:"现在", py:"xiànzài", pos:"n.", en:"now"},
+    {zh:"明天", py:"míngtiān", pos:"n.", en:"tomorrow"},
+    {zh:"有", py:"yǒu", pos:"v.", en:"to have"},
+    {zh:"时间", py:"shíjiān", pos:"n.", en:"time"},
+    {zh:"说", py:"shuō", pos:"v.", en:"to say; to speak"},
+    {zh:"遍", py:"biàn", pos:"m.", en:"number of times (of action)"},
+    {zh:"打球", py:"dǎ qiú", pos:"v.o.", en:"to play ball"},
+    {zh:"打", py:"dǎ", pos:"v.", en:"to play"},
+    {zh:"球", py:"qiú", pos:"n.", en:"ball"},
+    {zh:"抱歉", py:"bàoqiàn", pos:"v./a.", en:"to feel sorry/sorry"},
+    {zh:"忙", py:"máng", pos:"a.", en:"busy"},
+    {zh:"恐怕", py:"kǒngpà", pos:"adv.", en:"to be afraid that; perhaps"},
+    {zh:"行", py:"xíng", pos:"v.", en:"to be O.K."},
+    {zh:"谢谢", py:"xièxie", pos:"v.", en:"to thank"},
+    {zh:"你们", py:"nǐmen", pos:"pr.", en:"you (pl.)"}
+  ],
+  texts: [
+    {title:"Text 1 (Making comments / making suggestions)", lines:[
+      {sp:"王小云", zh:"林娜，昨天的京剧怎么样？", py:"Lín Nà, zuótiān de jīngjù zěnmeyàng?", en:"Lin Na, how was yesterday's Beijing opera?"},
+      {sp:"林娜", zh:"很有意思。今天天气很好，我们去游泳，好吗？", py:"Hěn yǒu yìsi. Jīntiān tiānqì hěn hǎo, wǒmen qù yóuyǒng, hǎo ma?", en:"Very interesting. The weather is very nice today. Shall we go swimming?"},
+      {sp:"王小云", zh:"太好了！什么时候去？", py:"Tài hǎo le! Shénme shíhou qù?", en:"Great! When shall we go?"},
+      {sp:"林娜", zh:"现在去，可以吗？", py:"Xiànzài qù, kěyǐ ma?", en:"Is it OK to go right now?"},
+      {sp:"王小云", zh:"可以。", py:"Kěyǐ.", en:"OK."}
+    ]},
+    {title:"Text 2 (Asking someone to repeat / refusing politely)", lines:[
+      {sp:"丁力波", zh:"杨老师，明天您有时间吗？", py:"Yáng lǎoshī, míngtiān nín yǒu shíjiān ma?", en:"Teacher Yang, do you have time tomorrow?"},
+      {sp:"杨老师", zh:"对不起，请再说一遍。", py:"Duìbuqǐ, qǐng zài shuō yí biàn.", en:"Sorry, please say it again."},
+      {sp:"丁力波", zh:"明天您有时间吗？我们去打球，好吗？", py:"Míngtiān nín yǒu shíjiān ma? Wǒmen qù dǎ qiú, hǎo ma?", en:"Do you have time tomorrow? Shall we go and play ball?"},
+      {sp:"杨老师", zh:"很抱歉，明天我很忙，恐怕不行。谢谢你们。", py:"Hěn bàoqiàn, míngtiān wǒ hěn máng, kǒngpà bù xíng. Xièxie nǐmen.", en:"I'm very sorry, I'll be very busy tomorrow. I'm afraid I can't. Thank you both."}
+    ]},
+    {title:"Poem: Dēng Guànquèlóu (Tang, Wang Zhihuan)", lines:[
+      {sp:"", zh:"白日依山尽，", py:"Bái rì yī shān jìn,", en:"The white sun sets behind the hills,"},
+      {sp:"", zh:"黄河入海流。", py:"Huáng Hé rù hǎi liú.", en:"The Yellow River flows into the sea."},
+      {sp:"", zh:"欲穷千里目，", py:"Yù qióng qiān lǐ mù,", en:"To see a thousand miles further,"},
+      {sp:"", zh:"更上一层楼。", py:"Gèng shàng yì céng lóu.", en:"Climb one more storey."}
+    ]},
+    {title:"Imitate the dialogues (1)", lines:[
+      {sp:"A", zh:"您好！", py:"Nín hǎo!", en:"Hello!"},
+      {sp:"B", zh:"您好！", py:"Nín hǎo!", en:"Hello!"},
+      {sp:"A", zh:"请问，您贵姓？", py:"Qǐngwèn, nín guìxìng?", en:"May I ask your surname?"},
+      {sp:"B", zh:"我姓李，叫李玛丽。请问，您姓什么？", py:"Wǒ xìng Lǐ, jiào Lǐ Mǎlì. Qǐngwèn, nín xìng shénme?", en:"My surname is Li, I'm called Li Mali. May I ask, what is your surname?"},
+      {sp:"A", zh:"我姓宋，叫宋华。您是哪国人？", py:"Wǒ xìng Sòng, jiào Sòng Huá. Nín shì nǎ guó rén?", en:"My surname is Song, I'm called Song Hua. What nationality are you?"},
+      {sp:"B", zh:"我是美国人，是北京大学的学生。", py:"Wǒ shì Měiguó rén, shì Běijīng Dàxué de xuésheng.", en:"I'm American, a student at Peking University."},
+      {sp:"A", zh:"认识您很高兴。", py:"Rènshi nín hěn gāoxìng.", en:"Pleased to meet you."},
+      {sp:"B", zh:"认识您，我也很高兴。", py:"Rènshi nín, wǒ yě hěn gāoxìng.", en:"Pleased to meet you too."}
+    ]},
+    {title:"Imitate the dialogues (2)", lines:[
+      {sp:"A", zh:"力波，你好吗？", py:"Lìbō, nǐ hǎo ma?", en:"Libo, how are you?"},
+      {sp:"B", zh:"我很好。宋华，你呢？", py:"Wǒ hěn hǎo. Sòng Huá, nǐ ne?", en:"I'm fine. Song Hua, and you?"},
+      {sp:"A", zh:"我很忙。你外婆好吗？", py:"Wǒ hěn máng. Nǐ wàipó hǎo ma?", en:"I'm very busy. How is your grandmother?"},
+      {sp:"B", zh:"谢谢，她很好。你爸爸、妈妈都好吗？", py:"Xièxie, tā hěn hǎo. Nǐ bàba, māma dōu hǎo ma?", en:"Thanks, she's very well. Are your father and mother both well?"},
+      {sp:"A", zh:"他们都很好。玛丽，这是我朋友，丁力波。", py:"Tāmen dōu hěn hǎo. Mǎlì, zhè shì wǒ péngyou, Dīng Lìbō.", en:"They're both very well. Mary, this is my friend, Ding Libo."},
+      {sp:"B", zh:"你好。", py:"Nǐ hǎo.", en:"Hello."},
+      {sp:"A", zh:"这是玛丽。", py:"Zhè shì Mǎlì.", en:"This is Mary."},
+      {sp:"C", zh:"你好。我叫玛丽，是北京大学的学生。我学习汉语。请问，你是美国人吗？", py:"Nǐ hǎo. Wǒ jiào Mǎlì, shì Běijīng Dàxué de xuésheng. Wǒ xuéxí Hànyǔ. Qǐngwèn, nǐ shì Měiguó rén ma?", en:"Hello. I'm Mary, a student at Peking University. I study Chinese. May I ask, are you American?"},
+      {sp:"B", zh:"不是，我是加拿大人。", py:"Bú shì, wǒ shì Jiānádà rén.", en:"No, I'm Canadian."}
+    ]},
+    {title:"Imitate the dialogues (3)", lines:[
+      {sp:"A", zh:"她是谁？", py:"Tā shì shéi?", en:"Who is she?"},
+      {sp:"B", zh:"她是我们老师。", py:"Tā shì wǒmen lǎoshī.", en:"She is our teacher."},
+      {sp:"A", zh:"她是中国人吗？", py:"Tā shì Zhōngguó rén ma?", en:"Is she Chinese?"},
+      {sp:"B", zh:"她是中国人。她姓陈。", py:"Tā shì Zhōngguó rén. Tā xìng Chén.", en:"She is Chinese. Her surname is Chen."},
+      {sp:"A", zh:"那是谁？", py:"Nà shì shéi?", en:"Who is that?"},
+      {sp:"B", zh:"她叫陆雨平。", py:"Tā jiào Lù Yǔpíng.", en:"She is called Lu Yuping."},
+      {sp:"A", zh:"她也是老师吗？", py:"Tā yě shì lǎoshī ma?", en:"Is she a teacher too?"},
+      {sp:"B", zh:"她不是老师。她是记者。", py:"Tā bú shì lǎoshī. Tā shì jìzhě.", en:"She is not a teacher. She is a reporter."}
+    ]},
+    {title:"Imitate the dialogues (4)", lines:[
+      {sp:"A", zh:"先生，请问，办公室在哪儿？", py:"Xiānsheng, qǐngwèn, bàngōngshì zài nǎr?", en:"Sir, excuse me, where is the office?"},
+      {sp:"B", zh:"在五层。", py:"Zài wǔ céng.", en:"On the fifth floor."},
+      {sp:"A", zh:"陈老师在吗？", py:"Chén lǎoshī zài ma?", en:"Is Teacher Chen in?"},
+      {sp:"B", zh:"谁？对不起，请再说一遍。", py:"Shéi? Duìbuqǐ, qǐng zài shuō yí biàn.", en:"Who? Sorry, please say it again."},
+      {sp:"A", zh:"陈芳芳老师在吗？", py:"Chén Fāngfāng lǎoshī zài ma?", en:"Is Teacher Chen Fangfang in?"},
+      {sp:"B", zh:"她在。", py:"Tā zài.", en:"She's in."},
+      {sp:"A", zh:"谢谢。", py:"Xièxie.", en:"Thank you."},
+      {sp:"B", zh:"不谢。", py:"Bú xiè.", en:"Don't mention it."}
+    ]},
+    {title:"Imitate the dialogues (5)", lines:[
+      {sp:"A", zh:"可以进来吗？", py:"Kěyǐ jìnlai ma?", en:"May I come in?"},
+      {sp:"B", zh:"王先生，您好。请进，请坐。", py:"Wáng xiānsheng, nín hǎo. Qǐng jìn, qǐng zuò.", en:"Mr. Wang, hello. Please come in, please sit down."},
+      {sp:"A", zh:"对不起，我来晚了。", py:"Duìbuqǐ, wǒ lái wǎn le.", en:"Sorry, I'm late."},
+      {sp:"B", zh:"没关系。您要咖啡吗？", py:"Méi guānxi. Nín yào kāfēi ma?", en:"It doesn't matter. Would you like coffee?"},
+      {sp:"A", zh:"我不要。谢谢。明天我们去看京剧，好吗？", py:"Wǒ bú yào. Xièxie. Míngtiān wǒmen qù kàn jīngjù, hǎo ma?", en:"No, thanks. Shall we go to see Beijing opera tomorrow?"},
+      {sp:"B", zh:"对不起，明天我很忙，恐怕不行。", py:"Duìbuqǐ, míngtiān wǒ hěn máng, kǒngpà bù xíng.", en:"Sorry, I'll be very busy tomorrow, I'm afraid I can't."}
+    ]},
+    {title:"Listen and repeat", lines:[
+      {sp:"", zh:"我没听清楚，请再说一遍。", py:"Wǒ méi tīng qīngchu, qǐng zài shuō yí biàn.", en:"I didn't hear clearly, please say it again."},
+      {sp:"", zh:"对不起，明天我没有时间，恐怕不行。", py:"Duìbuqǐ, míngtiān wǒ méiyǒu shíjiān, kǒngpà bù xíng.", en:"Sorry, I won't have time tomorrow, I'm afraid I can't."}
+    ]}
+  ],
+  phrases: [
+    {zh:"昨天的京剧怎么样？", py:"Zuótiān de jīngjù zěnmeyàng?", en:"How was yesterday's Beijing opera?", topic:"Key sentences"},
+    {zh:"今天天气很好，我们去游泳，好吗？", py:"Jīntiān tiānqì hěn hǎo, wǒmen qù yóuyǒng, hǎo ma?", en:"The weather is nice today, shall we go swimming?", topic:"Key sentences"},
+    {zh:"太好了！什么时候去？", py:"Tài hǎo le! Shénme shíhou qù?", en:"Great! When shall we go?", topic:"Key sentences"},
+    {zh:"现在去，可以吗？", py:"Xiànzài qù, kěyǐ ma?", en:"Is it OK to go now?", topic:"Key sentences"},
+    {zh:"可以。", py:"Kěyǐ.", en:"OK.", topic:"Key sentences"},
+    {zh:"明天您有时间吗？", py:"Míngtiān nín yǒu shíjiān ma?", en:"Do you have time tomorrow?", topic:"Key sentences"},
+    {zh:"对不起，请再说一遍。", py:"Duìbuqǐ, qǐng zài shuō yí biàn.", en:"Sorry, please say it again.", topic:"Key sentences"},
+    {zh:"很抱歉，恐怕不行。", py:"Hěn bàoqiàn, kǒngpà bù xíng.", en:"I'm very sorry, I'm afraid I can't.", topic:"Key sentences"},
+    {zh:"（……），好吗？", py:"(...), hǎo ma?", en:"(Suggestion), OK?", topic:"Making suggestions (pattern)"},
+    {zh:"（……），可以吗？", py:"(...), kěyǐ ma?", en:"(Suggestion), is that OK?", topic:"Making suggestions (pattern)"},
+    {zh:"太好了！", py:"Tài hǎo le!", en:"Great!", topic:"Making suggestions (accepting)"},
+    {zh:"对不起，请再说一遍。", py:"Duìbuqǐ, qǐng zài shuō yí biàn.", en:"Sorry, please say it again.", topic:"Asking someone to repeat something"},
+    {zh:"请问，这是什么？", py:"Qǐngwèn, zhè shì shénme?", en:"Excuse me, what is this?", topic:"Making comments"},
+    {zh:"这是武术。武术怎么样？", py:"Zhè shì wǔshù. Wǔshù zěnmeyàng?", en:"This is martial arts. How is martial arts?", topic:"Making comments"},
+    {zh:"这是熊猫。熊猫怎么样？", py:"Zhè shì xióngmāo. Xióngmāo zěnmeyàng?", en:"This is a panda. How is the panda?", topic:"Making comments"},
+    {zh:"请看书。", py:"Qǐng kàn shū.", en:"Please look at your books.", topic:"Classroom expressions"},
+    {zh:"请写汉字。", py:"Qǐng xiě Hànzì.", en:"Please write the characters.", topic:"Classroom expressions"},
+    {zh:"请再念一遍。", py:"Qǐng zài niàn yí biàn.", en:"Please read it again.", topic:"Classroom expressions"},
+    {zh:"我们听写。", py:"Wǒmen tīngxiě.", en:"Let's do dictation.", topic:"Classroom expressions"}
+  ],
+  grammar: [
+    {title:"Notes 1: ...zěnmeyàng?", note:"\"…怎么样?\" is an expression commonly used to ask for someone's opinion. Beijing opera (京剧) is the most popular of China's roughly 300 forms of opera.", examples:[{zh:"昨天的京剧怎么样？", py:"Zuótiān de jīngjù zěnmeyàng?", en:"How was yesterday's Beijing opera?"}]},
+    {title:"Notes 2: ..., hǎo ma? (suggestion)", note:"\"……，好吗？\" is a pattern used when making a suggestion.", examples:[{zh:"我们去游泳，好吗？", py:"Wǒmen qù yóuyǒng, hǎo ma?", en:"Shall we go swimming?"}]},
+    {title:"Notes 3: Tài hǎo le!", note:"\"太好了！\" shows enthusiastic approval and also expresses happy agreement with a suggestion. You may also answer with 好 (hǎo) or 行 (xíng).", examples:[{zh:"太好了！什么时候去？", py:"Tài hǎo le! Shénme shíhou qù?", en:"That's great! When are we going?"}]},
+    {title:"Notes 4: ..., kěyǐ ma?", note:"\"……，可以吗？\" is another expression used to make a suggestion. If you agree with a suggestion, you may say 可以 (kěyǐ) or 好 (hǎo).", examples:[{zh:"现在去，可以吗？", py:"Xiànzài qù, kěyǐ ma?", en:"Is it O.K. to go right now?"}]},
+    {title:"Notes 5: Míngtiān nín yǒu shíjiān ma?", note:"\"Do you have time tomorrow?\"", examples:[{zh:"明天您有时间吗？", py:"Míngtiān nín yǒu shíjiān ma?", en:"Do you have time tomorrow?"}]},
+    {title:"Notes 6: Qǐng zài shuō yí biàn", note:"\"Pardon? Would you say it again?\" Used when the speaker's words were not heard clearly and you would like him/her to repeat them.", examples:[{zh:"请再说一遍。", py:"Qǐng zài shuō yí biàn.", en:"Please say it again."}]},
+    {title:"Notes 7: Kǒngpà bù xíng", note:"\"恐怕不行\" is a phrase to express a courteous refusal.", examples:[{zh:"很抱歉，明天我很忙，恐怕不行。", py:"Hěn bàoqiàn, míngtiān wǒ hěn máng, kǒngpà bù xíng.", en:"I'm sorry, but I'll be very busy tomorrow. I'm afraid I can't."}]},
+    {title:"Sandhi of 一 (yī)", note:"一 is pronounced in the first tone (yī) when it stands by itself, at the end of a word, phrase or sentence, or is used as an ordinal number. It is pronounced in the fourth tone (yì) before a first, second or third tone syllable, and in the second tone (yí) before a fourth tone syllable.", examples:[
+      {zh:"一杯", py:"yì bēi", en:"one cup"},{zh:"一瓶", py:"yì píng", en:"one bottle"},{zh:"一本", py:"yì běn", en:"one copy"},{zh:"一遍", py:"yí biàn", en:"one time / once"}
+    ]},
+    {title:"Sentences with a verbal predicate", note:"The main part of the predicate in a sentence with a verbal predicate is a verb. The object usually follows the verb. One of its negative forms is made by placing the adverb 不 before the verb. Structure: Subject + (Adv) + V + (O) + (吗).", examples:[
+      {zh:"你要咖啡吗？", py:"Nǐ yào kāfēi ma?", en:"Do you want coffee?"},
+      {zh:"我们都学习汉语。", py:"Wǒmen dōu xuéxí Hànyǔ.", en:"We all study Chinese."},
+      {zh:"餐厅在哪儿？", py:"Cāntīng zài nǎr?", en:"Where is the dining room?"},
+      {zh:"我不知道。", py:"Wǒ bù zhīdao.", en:"I don't know."},
+      {zh:"我姓陆。", py:"Wǒ xìng Lù.", en:"My surname is Lu."},
+      {zh:"她叫林娜。", py:"Tā jiào Lín Nà.", en:"She is called Lin Na."},
+      {zh:"您明天有时间吗？", py:"Nín míngtiān yǒu shíjiān ma?", en:"Do you have time tomorrow?"}
+    ]}
+  ],
+  chars: [
+    {zh:"九", py:"jiǔ", en:"nine", note:"2 strokes"},
+    {zh:"厶", py:"sī", en:"private", note:"2 strokes"},
+    {zh:"寸", py:"cùn", en:"a unit of inch", note:"3 strokes"},
+    {zh:"工", py:"gōng", en:"labour", note:"3 strokes"},
+    {zh:"亡", py:"wáng", en:"to die", note:"3 strokes"},
+    {zh:"三", py:"sān", en:"three", note:"3 strokes"},
+    {zh:"气", py:"qì", en:"air (trad. 氣)", note:"4 strokes"},
+    {zh:"立", py:"lì", en:"to stand", note:"5 strokes"},
+    {zh:"身", py:"shēn", en:"body", note:"7 strokes; on the left side or in the middle of a character, 身 is written with a shortened form (see 谢)"},
+    {zh:"兑", py:"duì", en:"to exchange", note:"7 strokes"},
+    {zh:"去", py:"qù", en:"to go", note:"去 = 土 + 厶"},
+    {zh:"有", py:"yǒu", en:"to have", note:"有 = ナ + 月"},
+    {zh:"意", py:"yì", en:"meaning", note:"意 = 立 + 日 + 心"},
+    {zh:"思", py:"sī", en:"to think", note:"思 = 田 + 心"},
+    {zh:"天", py:"tiān", en:"day; sky", note:"天 = 一 + 大"},
+    {zh:"太", py:"tài", en:"too", note:"太 = 大 + 丶"},
+    {zh:"什", py:"shén", en:"what (什么)", note:"什 = 亻 + 十"},
+    {zh:"么", py:"me", en:"(suffix in 什么)", note:"么 = 丿 + 厶"},
+    {zh:"时", py:"shí", en:"time (trad. 時)", note:"时 = 日 + 寸; 日 (sun) side denotes time"},
+    {zh:"候", py:"hou", en:"(时候) time; moment", note:"候 = 亻 + 丨 + ⼆ + 矢; 10 strokes"},
+    {zh:"现", py:"xiàn", en:"now; present (trad. 現)", note:"现 = 王 + 见"},
+    {zh:"明", py:"míng", en:"bright; tomorrow", note:"明 = 日 + 月; sun and moon sides denote light"},
+    {zh:"间", py:"jiān", en:"between (时间) (trad. 間)", note:"间 = 门 + 日"},
+    {zh:"说", py:"shuō", en:"to speak (trad. 說)", note:"说 = 讠 + 兑"},
+    {zh:"忙", py:"máng", en:"busy", note:"忙 = 忄 + 亡; 忄 (shùxīnpáng, 3 strokes) is the left-side form of 心"},
+    {zh:"谢", py:"xiè", en:"to thank (trad. 謝)", note:"谢 = 讠 + 身 + 寸"}
+  ],
+  strokes: [
+    {name:"shùzhé", zh:"乚", desc:"Vertical stroke with a horizontal turn to the right; like the 2nd stroke in 山"},
+    {name:"shùtí", zh:"乚", desc:"Vertical stroke with an upward turn to the right; like the 1st stroke in 以"},
+    {name:"shùzhézhégōu", zh:"ㄅ", desc:"Vertical stroke with a horizontal turn to the right, then a downward turn and a hook; like the 2nd stroke in 马"},
+    {name:"héngzhéwāngōu", zh:"乙", desc:"Horizontal stroke with a vertical turn, then a horizontal turn to the right and an upward hook; like the 2nd stroke in 九"},
+    {name:"piězhé", zh:"ㄥ", desc:"Downward stroke to the left, then a horizontal turn to the right; like the 2nd stroke in 么"},
+    {name:"piědiǎn", zh:"巜", desc:"Downward stroke to the left, then an extended dot to the right; like the 1st stroke in 女"},
+    {name:"shùxīnpáng (忄)", zh:"忄", desc:"the \"vertical heart\" side, 3 strokes; on the left side of a character 心 is written as 忄"},
+    {name:"Combination of strokes", zh:"", desc:"Three ways to combine strokes: (1) Adjacent (not attached) like 八, 儿, 二, 小; (2) Crossing like 十, 大, 九, 夫; (3) Connecting like 厂, 丁, 人, 山, 天."}
+  ],
+  pron: {
+    initials:["b","p","m","f","d","t","n","l","g","k","h","j","q","x","zh","ch","sh","r","z","c","s"],
+    finals:[],
+    tones:["First tone ¯","Second tone ´","Third tone ˇ","Fourth tone `","Neutral tone"],
+    notes:[
+      "Sandhi of 一: yī stands alone, at the end of a word/phrase/sentence, or as an ordinal number. Before tone 1, 2, 3 it becomes yì (e.g. yì bēi, yì píng, yì běn); before tone 4 it becomes yí (e.g. yí biàn).",
+      "There are more than 400 meaningful syllables in the common speech of modern Chinese; adding the four tones gives more than 1,200 syllables. The syllables covered from Lesson 1 to Lesson 6 are shown in the initials-and-finals combination table.",
+      "The first six lessons give an overview of the phonetic system: twenty-one initials, thirty-eight finals and four basic tones."
+    ],
+    drills:[
+      {py:"zhī",note:"spelling"},{py:"chī",note:"spelling"},{py:"zī",note:"spelling"},{py:"cī",note:"spelling"},
+      {py:"jū",note:"spelling"},{py:"qū",note:"spelling"},{py:"gū",note:"spelling"},{py:"kū",note:"spelling"},
+      {py:"bēn",note:"spelling"},{py:"pēng",note:"spelling"},{py:"tān",note:"spelling"},{py:"dāng",note:"spelling"},
+      {py:"zhōng",note:"spelling"},{py:"chōng",note:"spelling"},{py:"gān",note:"spelling"},{py:"kāng",note:"spelling"},
+      {py:"zān",note:"spelling"},{py:"cāng",note:"spelling"},{py:"jīn",note:"spelling"},{py:"qīng",note:"spelling"},
+      {py:"zhā",note:"spelling"},{py:"chā",note:"spelling"},{py:"zū",note:"spelling"},{py:"cū",note:"spelling"},
+      {py:"gē",note:"spelling"},{py:"kē",note:"spelling"},{py:"jī",note:"spelling"},{py:"qī",note:"spelling"},
+      {py:"yōu yóu yǒu yòu",note:"four tones"},{py:"yōng yǒng yòng",note:"four tones; yóuyǒng"},
+      {py:"zuō zuó zuǒ zuò",note:"four tones; zuótiān"},{py:"tiān tián tiǎn tiàn",note:"four tones"},
+      {py:"jīn jǐn jìn",note:"jīntiān"},{py:"míng mǐng mìng",note:"míngtiān"},
+      {py:"qī qí qǐ qì",note:"tiānqì"},{py:"xiān xián xiǎn xiàn",note:"xiànzài"},
+      {py:"jīng jǐng jìng",note:"four tones"},{py:"jū jú jǔ jù",note:"jīngjù"},
+      {py:"bāo báo bǎo bào",note:"four tones"},{py:"qiān qián qiǎn qiàn",note:"bàoqiàn"},
+      {py:"kōng kǒng kòng",note:"kǒngpà"},{py:"xīng xíng xǐng xìng",note:"bù xíng"},
+      {py:"jiǔ — xiǔ",note:"sound discrimination: nine"},{py:"sī — shī",note:"sound discrimination: private"},{py:"cùn — zùn",note:"sound discrimination: inch"},
+      {py:"qì — jì",note:"sound discrimination: air"},{py:"duì — tuì",note:"sound discrimination: to exchange"},{py:"guǎn — juǎn",note:"sound discrimination"},
+      {py:"wáng — wàng",note:"tone discrimination: to die"},{py:"kàn — kǎn",note:"tone discrimination: to see"},{py:"gōng — gòng",note:"tone discrimination: labor"},
+      {py:"sān — sǎn",note:"tone discrimination: three"},{py:"shēn — shèn",note:"tone discrimination: body"},{py:"guāi — guǎi",note:"tone discrimination"},
+      {py:"lǎoshī",note:"tones 3+1"},{py:"yǔyīn",note:"3+1: pronunciation"},{py:"xiǎoshuō",note:"3+1: novel"},
+      {py:"yuányán",note:"3+2"},{py:"dǎ qiú",note:"3+2"},{py:"qǐchuáng",note:"3+2: to get up"},
+      {py:"kěyǐ",note:"3+3"},{py:"yǔfǎ",note:"3+3: grammar"},{py:"fǔdǎo",note:"3+3: coach"},
+      {py:"kǒngpà",note:"3+4"},{py:"qǐngwèn",note:"3+4"},{py:"nǚshì",note:"3+4: Madam"},
+      {py:"jiějie",note:"3+neutral"},{py:"zěnme",note:"3+neutral: how"},{py:"yǐzi",note:"3+neutral: chair"},
+      {py:"shàngbān",note:"4+1: to go to work"},{py:"qìchē",note:"4+1: car"},{py:"lùyīn",note:"4+1: sound recording"},
+      {py:"sì céng",note:"4+2"},{py:"kèwén",note:"4+2: text"},{py:"fùxí",note:"4+2: review"},
+      {py:"wàiyǔ",note:"4+3"},{py:"diànyǐng",note:"4+3: movie"},{py:"diànnǎo",note:"4+3: computer"},
+      {py:"bàoqiàn",note:"4+4"},{py:"huìhuà",note:"4+4: conversation"},{py:"Hànzì",note:"4+4: Chinese character"},
+      {py:"xièxie",note:"4+neutral"},{py:"mèimei",note:"4+neutral"},{py:"kèqi",note:"4+neutral"},
+      {py:"duànliàn",note:"to do physical training"},{py:"chīfàn",note:"to eat a meal"},{py:"shàngkè",note:"to have lessons"},{py:"xiàkè",note:"class is over"},
+      {py:"chànggē",note:"to sing a song"},{py:"tiàowǔ",note:"to dance"},{py:"xǐzǎo",note:"to take a bath"},{py:"shuìjiào",note:"to sleep"},
+      {py:"shuō Hànyǔ",note:"to speak Chinese"},{py:"niàn shēngcí",note:"to read the new words"},{py:"xiě Hànzì",note:"to write Chinese characters"},{py:"tīng lùyīn",note:"to listen to tape"},
+      {py:"kàn lùxiàng",note:"to watch video"},{py:"zuò liànxí",note:"to do exercise"},{py:"fānyì jùzi",note:"to translate sentence"},{py:"yòng diànnǎo",note:"to use computer"},
+      {py:"Qǐng kàn shū.",note:"Please look at your books."},{py:"Qǐng xiě Hànzì.",note:"Please write the characters."},{py:"Qǐng zài niàn yí biàn.",note:"Please read it again."},{py:"Wǒmen tīngxiě.",note:"Let's do dictation."}
+    ]
+  },
+  culture: [
+    "Beijing Opera: a branch of traditional Chinese musical drama that took shape in Beijing about 150 years ago and has been popular ever since. It is a theatrical art synthesizing recitation, instrumental music, singing, dancing, acrobatics and martial arts, featuring symbolic motions and stage design. The formulaic, suggestive movements of the actors are accompanied by the rhythmic beats of gongs and drums or haunting melodies of traditional instruments.",
+    "Review: By the end of Lesson 6 you have met the phonetic system (21 initials, 38 finals, 4 tones; just over 1,200 initial-final-tone combinations), more than 100 words and expressions, 40 key sentences, 22 classroom sentences, and sixty basic Chinese characters plus over fifty vocabulary items formed from them."
+  ]
+};

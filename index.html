@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#b3261e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>CHINA101R Practice</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#/">汉语<span>101R</span></a>
+  <button id="scopeBtn" class="scope-pill" aria-label="Change lesson range">Lessons 1–2</button>
+</header>
+<main id="app" tabindex="-1"></main>
+<nav class="tabbar">
+  <a href="#/" data-r="home"><i>🏠</i><span>Home</span></a>
+  <a href="#/study" data-r="study"><i>📖</i><span>Study</span></a>
+  <a href="#/quiz/mock" data-r="quiz"><i>📝</i><span>Quiz</span></a>
+  <a href="#/oral" data-r="oral"><i>🎤</i><span>Oral</span></a>
+  <a href="#/progress" data-r="progress"><i>📊</i><span>Progress</span></a>
+</nav>
+<div id="sheet" class="sheet" hidden></div>
+<div id="toast" class="toast" hidden></div>
+
+<script src="data/lesson-1.js"></script>
+<script src="data/lesson-2.js"></script>
+<script src="data/lesson-3.js"></script>
+<script src="data/lesson-4.js"></script>
+<script src="data/lesson-5.js"></script>
+<script src="data/lesson-6.js"></script>
+<script src="data/lesson-7.js"></script>
+<script src="data/lesson-8.js"></script>
+<script src="data/lesson-9.js"></script>
+<script src="data/lesson-10.js"></script>
+<script src="data/lesson-11.js"></script>
+<script src="data/lesson-12.js"></script>
+<script src="data/lesson-13.js"></script>
+<script src="data/lesson-14.js"></script>
+<script src="js/util.js"></script>
+<script src="js/data.js"></script>
+<script src="js/quizzes.js"></script>
+<script src="js/app.js"></script>
+<script>if("serviceWorker"in navigator&&location.protocol!=="file:")addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
+</body>
+</html>

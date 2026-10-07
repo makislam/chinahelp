@@ -1,0 +1,13 @@
+{
+  "name": "CHINA101R Practice",
+  "short_name": "汉语101R",
+  "description": "Chinese practice from New Practical Chinese Reader 1",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf7f2",
+  "theme_color": "#b3261e",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
