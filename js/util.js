@@ -67,12 +67,98 @@ window.CH = window.CH || {};
     return { init: '', fin: base, base };
   };
   CH.CONFUSABLE = [['b', 'p'], ['d', 't'], ['g', 'k'], ['j', 'q', 'x'], ['z', 'c', 's'], ['zh', 'ch', 'sh'], ['z', 'zh'], ['c', 'ch'], ['s', 'sh'], ['n', 'l'], ['l', 'r'], ['f', 'h'], ['m', 'n']];
-  CH.CONF_FIN = [['an', 'ang'], ['en', 'eng'], ['in', 'ing'], ['ian', 'iang'], ['uan', 'uang'], ['ai', 'ei'], ['ao', 'ou'], ['u', 'ü'], ['o', 'e'], ['an', 'en'], ['ong', 'eng']];
+  CH.CONF_FIN = [['an', 'ang'], ['en', 'eng'], ['in', 'ing'], ['ian', 'iang'], ['uan', 'uang'], ['ai', 'ei'], ['ao', 'ou'], ['u', 'ü'], ['o', 'e'], ['an', 'en'], ['ong', 'eng'], ['ang', 'eng', 'ong'], ['iao', 'iou', 'iu'], ['uai', 'ai'], ['ao', 'ai', 'an']];
 
   /* ---------- Chinese text ---------- */
   CH.isHan = c => /[一-鿿]/.test(c);
   CH.hanOnly = s => Array.from(String(s || '')).filter(CH.isHan).join('');
   CH.cleanZh = s => String(s || '').replace(/[（(][^）)]*[）)]/g, '').replace(/[…\.]{2,}/g, ' ').replace(/[A-Za-z0-9]+/g, ' ');
+
+  /* ---------- explain what is wrong with a typed pinyin answer (html, '' if nothing specific) ---------- */
+  const ORDN = ['1st', '2nd', '3rd', '4th', 'neutral (no mark)'];
+  CH.pyDiff = function (user, ref) {
+    if (!user || !ref || /[一-鿿]/.test(user)) return '';
+    const refToks = CH.pyTokens(CH.numToMarks(ref)).map(t => CH.normPy(t, true)).filter(Boolean);
+    const u = CH.normPy(user, true), r = refToks.join('');
+    if (u === r) return '';
+    if (CH.stripTone(u) !== CH.stripTone(r)) {
+      const uToks = CH.pyTokens(CH.numToMarks(user)).map(t => CH.stripTone(CH.normPy(t, true)));
+      const miss = Array.from(new Set(refToks.filter(t => uToks.indexOf(CH.stripTone(t)) < 0)));
+      return '<div class="hint">' + (miss.length ? 'Spelling: check <b>' + CH.esc(miss.join(', ')) + '</b>' : 'The letters differ, not only the tones.') + '</div>';
+    }
+    /* letters match, so the strings line up: find each word whose tones differ */
+    const notes = [];
+    let pos = 0;
+    refToks.forEach(t => {
+      const ut = u.slice(pos, pos + t.length); pos += t.length;
+      if (ut === t) return;
+      let why;
+      if (CH.stripTone(t) === 'bu') why = t === 'bú' ? '不 changes to <b>bú</b> before a 4th tone (bú shì, bú yào)' : '不 stays <b>bù</b> before 1st, 2nd and 3rd tones (bù hē, bù máng, bù hǎo)';
+      else if (t === 'yí' || t === 'yì') why = '一 is <b>yí</b> before a 4th tone and <b>yì</b> before other tones';
+      else {
+        const tm = Array.from(t), um = Array.from(ut), bits = new Set();
+        for (let i = 0; i < tm.length; i++) if (tm[i] !== um[i]) {
+          const rt = CH.toneOf(tm[i]), yt = CH.toneOf(um[i]);
+          bits.add(rt === 5 ? 'a syllable here is <b>neutral</b>: no tone mark (bàba, māma, nǎinai, péngyou)' : yt === 5 ? 'a tone mark is <b>missing</b>' : 'you wrote a ' + ORDN[yt - 1] + ' tone where it is ' + ORDN[rt - 1]);
+        }
+        why = Array.from(bits).join('; ');
+      }
+      notes.push('<b>' + CH.esc(t) + '</b> (you: ' + CH.esc(ut) + ')' + (why ? ': ' + why : ''));
+    });
+    return notes.length ? '<div class="hint" style="text-align:left">Tones to fix:<br>' + notes.join('<br>') + '</div>' : '';
+  };
+
+  /* ---------- loose check of an English translation ---------- */
+  /* {ok, notes[]}: same people (my / your / his / her...), same negation, most of the content words */
+  const CONTR = [[/n't\b/g, ' not'], [/'s\b/g, ' is'], [/'re\b/g, ' are'], [/'m\b/g, ' am']];
+  const SYN = [['mom', 'mother', 'mum', 'mama', 'mommy'], ['dad', 'father', 'papa', 'daddy'], ['grandma', 'grandmother', 'granny', 'nana', 'grandmom'], ['older', 'elder', 'big'], ['younger', 'little'],
+    ['also', 'too', 'well', 'so', 'either'], ['both', 'all'], ['doctor', 'physician', 'medic', 'dr'], ['country', 'nationality', 'nation', 'where'], ['chinese', 'china'],
+    ['want', 'would', 'like'], ['drink', 'have'], ['very', 'really', 'quite'], ['fine', 'good', 'ok', 'great'], ['teacher', 'instructor', 'professor'],
+    ['language', 'lang'], ['foreign', 'foriegn'], ['parent', 'parents'], ['boyfriend', 'bf'], ['girlfriend', 'gf'], ['maternal', 'mother side'], ['paternal', 'father side']];
+  const STOP = new Set('a an the is are am be to of and or in on at it this that do does what which who how with from as for some any will one side'.split(' '));
+  const PERS = { p1: ['i', 'me', 'my', 'mine', 'we', 'us', 'our', 'ours', 'myself'], p2: ['you', 'your', 'yours'], m: ['he', 'him', 'his'], f: ['she', 'her', 'hers'], pl: ['they', 'them', 'their', 'theirs'] };
+  const PNAME = { p1: 'I / my / we', p2: 'you / your', m: 'he / his', f: 'she / her', pl: 'they / their' };
+  const PZH = { p1: '我', p2: '你 / 您', m: '他', f: '她', pl: '他们' };
+  const enWords = s => {
+    let t = ' ' + String(s || '').toLowerCase().replace(/\([^)]*\)/g, ' ').replace(/[’`]/g, "'").replace(/\bgirl friend/g, 'girlfriend').replace(/\bboy friend/g, 'boyfriend').replace(/\bgrand (ma|mother)/g, 'grand$1') + ' ';
+    CONTR.forEach(([a, b]) => { t = t.replace(a, b); });
+    return t.replace(/[^a-z\s]/g, ' ').split(/\s+/).filter(Boolean);
+  };
+  const canon = w => { if (w.length > 3 && /[^s]s$/.test(w)) w = w.slice(0, -1); for (const g of SYN) if (g.indexOf(w) >= 0) return g[0]; return w; };
+  function personsZh(zh) {
+    const z = String(zh || ''), p = new Set();
+    if (/我/.test(z)) p.add('p1');
+    if (/你|您/.test(z)) p.add('p2');
+    if (/[他她]们/.test(z)) p.add('pl');
+    if (/他(?!们)/.test(z)) p.add('m');
+    if (/她(?!们)/.test(z)) p.add('f');
+    return p;
+  }
+  const personsEn = words => { const p = new Set(); words.forEach(w => Object.keys(PERS).forEach(k => { if (PERS[k].indexOf(w) >= 0) p.add(k); })); return p; };
+  /* opts.zh: the Chinese, which decides whose it is; opts.heard: only heard, so tā may be he or she */
+  CH.enCheck = function (input, ref, opts) {
+    opts = opts || {};
+    const uw = enWords(input), rw = enWords(ref), notes = [];
+    if (!uw.length) return { ok: false, notes: ['Write the English meaning.'] };
+    /* required: people in both the Chinese and the model English; allowed: people in either (Chinese often drops 我) */
+    const refP = personsEn(rw), zhP = opts.zh ? personsZh(opts.zh) : refP;
+    const want = new Set(Array.from(zhP).filter(k => refP.has(k))), allow = new Set(Array.from(zhP).concat(Array.from(refP))), got = personsEn(uw);
+    if (opts.heard && (want.has('m') || want.has('f'))) {
+      want.delete('m'); want.delete('f'); allow.delete('m'); allow.delete('f');
+      if (!got.has('m') && !got.has('f')) notes.push('Who is it about? <b>tā</b> = he / she (his / her).');
+      got.delete('m'); got.delete('f');
+    }
+    want.forEach(k => { if (!got.has(k)) notes.push('Missing <b>' + PNAME[k] + '</b> (' + PZH[k] + ')'); });
+    got.forEach(k => { if (!allow.has(k) && !(k === 'p2' && /thank you/.test(String(input).toLowerCase()))) notes.push('<b>' + PNAME[k] + '</b> is not in the Chinese' + (opts.zh ? ' — ' + CH.esc(opts.zh) + ' has ' + (Array.from(want).map(x => PZH[x]).join(', ') || 'no pronoun') : '') + '.'); });
+    const neg = w => w.some(x => x === 'not' || x === 'no' || x === 'never');
+    if (neg(rw) !== neg(uw)) notes.push(neg(rw) ? 'The Chinese has 不 (not / no): your answer is missing it.' : 'Your answer says "not", but the Chinese is not negative.');
+    const ignore = new Set([].concat(PERS.p1, PERS.p2, PERS.m, PERS.f, PERS.pl, ['not', 'no', 'never']));
+    const content = ws => Array.from(new Set(ws.filter(w => !STOP.has(w) && !ignore.has(w)).map(canon)));
+    const rc = content(rw), uc = new Set(content(uw));
+    const hit = rc.filter(w => uc.has(w) || (w === 'also' && uc.has('both')) || ((w === 'maternal' || w === 'paternal') && uc.has('grandma')));
+    if (rc.length && hit.length < Math.max(1, Math.ceil(rc.length * 0.6))) notes.push('Key words missing: ' + rc.filter(w => hit.indexOf(w) < 0).map(w => '<b>' + CH.esc(w) + '</b>').join(', '));
+    return { ok: !notes.length, notes };
+  };
 
   /* similarity 0..1 between two strings (levenshtein based) */
   CH.similarity = function (a, b) {

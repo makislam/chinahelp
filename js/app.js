@@ -3,8 +3,12 @@
   'use strict';
   const { esc, $, $$ } = CH;
   const app = $('#app');
-  CH.settings = Object.assign({ showPy: true, showEn: true, strict: true, n: 10 }, CH.store.get('settings', {}));
+  CH.settings = Object.assign({ showPy: true, showEn: true, strict: true, n: 20 }, CH.store.get('settings', {}));
   const saveSettings = () => CH.store.set('settings', CH.settings);
+  const mockN = () => Math.min(60, CH.settings.n * 2);
+  /* questions-per-quiz chips; changing one re-renders the current screen */
+  const lenPicker = () => '<div class="row" style="flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0"><small>Questions per quiz:</small>' + [10, 20, 30, 50].map(v => '<button class="chip ' + (CH.settings.n === v ? 'on' : '') + '" data-n="' + v + '">' + v + '</button>').join('') + '</div>';
+  const bindLen = () => $$('[data-n]').forEach(b => b.onclick = () => { CH.settings.n = +b.dataset.n; saveSettings(); route(); });
   const han = (z, c) => '<span class="han ' + (c || '') + '">' + esc(z) + '</span>';
   const py = p => '<span class="py">' + esc(p) + '</span>';
   const spk = (t, extra) => '<button class="spk ' + (extra || '') + '" data-say="' + esc(t) + '" aria-label="Play">🔊</button>';
@@ -70,21 +74,29 @@
     for (let i = 1; i <= 14; i++) if (!CH.DB.lessons[i]) missing.push(i);
     let h = '<div class="card"><h2>Ready to practice</h2><p>Focus: <b>' + CH.scopeLabel() + '</b></p><p class="hint">' +
       (CH.scope.from > 1 && CH.scope.review ? 'Earlier lessons appear less often as review.' : 'Change the range with the red button above.') + '</p>' +
-      '<a class="btn block" href="#/quiz/mock">Start mock quiz (' + CH.settings.n * 2 + ' mixed questions)</a></div>';
+      '<a class="btn block" href="#/quiz/full">Full review: everything in ' + CH.scopeLabel().replace(' + review', '') + ' (' + CH.coverageUnits().length + ' questions)</a>' +
+      '<p class="hint" style="margin:2px 0 8px">Every word, character and sentence once — each new full review asks them a different way.</p>' +
+      '<a class="btn block" href="#/quiz/mock2">Mock quiz: Quiz 2 format (5 sections, 28 questions)</a>' +
+      '<p class="hint" style="margin:2px 0 8px">Listening, tone marks, dictation + English, English → Chinese, pinyin + English for characters. Answer <b>every part</b> of each question.</p>' +
+      '<a class="btn alt block" href="#/quiz/mock">Mock quiz: Quiz 1 format (6 sections)</a>' +
+      '<a class="btn alt block" href="#/quiz/examTraps">Fix my Quiz 2 mistakes (不 bú shì, 他/她/你, 奶奶/外婆, -ng)</a>' +
+      '<a class="btn alt block" href="#/quiz/mix">Mixed practice (' + mockN() + ' questions)</a>' + lenPicker() + '</div>';
     if (missing.length) h += '<div class="card hint">Lessons not loaded yet: ' + missing.join(', ') + '</div>';
     h += '<div class="grid">';
     CH.drills.forEach(c => { h += '<a class="tile" href="#/cat/' + c.id + '"><i>' + c.icon + '</i><b>' + esc(c.name) + '</b><small>' + esc(c.desc) + '</small></a>'; });
     h += '<a class="tile" href="#/oral"><i>🎤</i><b>Oral exam prep</b><small>Read aloud, role-play, answer questions</small></a>' +
       '<a class="tile" href="#/study"><i>📖</i><b>Study</b><small>Vocab, flashcards, grammar, pronunciation</small></a></div>';
     app.innerHTML = h;
+    bindLen();
   };
 
   routes.cat = ([id]) => {
     const c = CH.drills.find(x => x.id === id); if (!c) return routes.home();
-    let h = '<h2>' + c.icon + ' ' + esc(c.name) + '</h2><p class="hint">' + CH.scopeLabel() + '</p>';
-    h += '<a class="btn block" href="#/quiz/all:' + c.id + '">Mix everything in this section</a><div class="card list">';
+    let h = '<h2>' + c.icon + ' ' + esc(c.name) + '</h2><p class="hint">' + CH.scopeLabel() + ' · ' + esc(c.desc) + '</p>';
+    h += '<a class="btn block" href="#/quiz/all:' + c.id + '">Mix everything in this section (' + CH.settings.n + ' questions)</a>' + lenPicker() + '<div class="card list">';
     c.items.forEach(i => { h += '<a class="item" style="text-decoration:none;color:inherit" href="' + (i.route || '#/quiz/' + i.id) + '"><span class="m">' + (i.audio ? '🔊 ' : '') + esc(i.name) + '</span><span>›</span></a>'; });
     app.innerHTML = h + '</div>';
+    bindLen();
   };
 
   /* ---------- study ---------- */
@@ -178,7 +190,9 @@
   routes.quiz = ([id]) => {
     id = decodeURIComponent(id || 'mock');
     let ids, title, n = CH.settings.n;
-    if (id === 'mock') { ids = CH.MOCK; n = CH.settings.n * 2; title = 'Mock quiz'; }
+    if (id === 'full') { const fq = CH.makeCoverage(); if (fq.length) return runQuiz(fq, 'Full review'); }
+    if (id === 'mock' || id === 'mock2') { const ex = CH.makeExam(id === 'mock' ? 'q1' : 'q2'); if (ex.length) return runQuiz(ex, id === 'mock' ? 'Mock quiz (Quiz 1 format)' : 'Mock quiz (Quiz 2 format)'); }
+    if (id === 'mix' || id === 'mock' || id === 'mock2') { ids = CH.MOCK; n = mockN(); title = 'Mixed practice'; }
     else if (id.startsWith('all:')) { const c = CH.drills.find(x => x.id === id.slice(4)); ids = c.items.filter(i => i.gen).map(i => i.gen); title = c.name; }
     else { ids = [id]; title = (CH.genIndex[id] || {}).name || id; }
     const qs = CH.makeQuiz(ids, n);
@@ -201,17 +215,24 @@
         if (q.inputKind === 'py') h += '<div class="keys">' + ['ā', 'á', 'ǎ', 'à', 'ē', 'é', 'ě', 'è', 'ī', 'í', 'ǐ', 'ì', 'ō', 'ó', 'ǒ', 'ò', 'ū', 'ú', 'ǔ', 'ù', 'ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'].map(c => '<button data-ins="' + c + '">' + c + '</button>').join('') + '</div><div class="hint">Tip: typing numbers works too (ni3 hao3).</div>';
         if (q.tiles) h += '<div class="hint">Or tap characters:</div><div class="tiles">' + q.tiles.map(t => '<button data-ins="' + esc(t) + '">' + esc(t) + '</button>').join('') + '</div><button class="btn alt" id="clr">Clear</button>';
         h += '<button class="btn block" id="sub">Check</button>';
+      } else if (q.type === 'multi') {
+        q.fields.forEach((f, k) => {
+          h += '<label class="flabel" for="in' + k + '">' + (k + 1) + '. ' + esc(f.label) + '</label><input class="inp" id="in' + k + '" data-f="' + k + '" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="' + (f.kind === 'en') + '" placeholder="' + esc(f.placeholder || '') + '">';
+          if (f.kind === 'py') h += '<div class="keys">' + ['ā', 'á', 'ǎ', 'à', 'ē', 'é', 'ě', 'è', 'ī', 'í', 'ǐ', 'ì', 'ō', 'ó', 'ǒ', 'ò', 'ū', 'ú', 'ǔ', 'ù', 'ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'].map(c => '<button data-ins="' + c + '" data-to="' + k + '">' + c + '</button>').join('') + '</div><div class="hint">Tip: numbers work too (ni3 hao3).</div>';
+        });
+        h += '<button class="btn block" id="sub">Check</button>';
       } else if (q.type === 'order') {
         h += '<div class="tiles ans" id="ans"></div><div class="tiles" id="bank">' + q.tiles.map((t, k) => '<button data-k="' + k + '">' + esc(t) + '</button>').join('') + '</div><button class="btn alt" id="clr">Reset</button><button class="btn block" id="sub">Check</button>';
       }
       h += '<div id="fb"></div></div>';
       app.innerHTML = h;
-      if (q.speak && CH.settings.autoplay !== false && (q.drill.indexOf('listen') === 0 || q.drill === 'toneListen' || q.drill === 'soundListen' || q.type === 'input')) setTimeout(() => say(q.speak), 250);
+      if (q.speak && CH.settings.autoplay !== false && (q.drill.indexOf('listen') === 0 || q.drill === 'toneListen' || q.drill === 'soundListen' || q.type === 'input' || q.type === 'multi')) setTimeout(() => say(q.speak), 250);
       wire(q);
     };
 
     const feedback = (q, ok, extra) => {
       CH.stats.record(q.drill, q.item && q.item.id, ok);
+      if (q.unit) CH.cover.mark(q.unit, q.way);
       if (ok) score++; else missed.push(q);
       $('#fb').innerHTML = '<div class="fb ' + (ok ? 'ok' : 'bad') + '"><b>' + (ok ? '✓ Correct' : '✗ Not quite') + '</b>' + (extra || '') + '<div style="margin-top:6px">' + (q.explain || '') + '</div></div><button class="btn block" id="nx">' + (i + 1 >= qs.length ? 'See results' : 'Next') + '</button>';
       $('#nx').onclick = () => { i++; next(); };
@@ -235,10 +256,31 @@
           if ($('#sub').disabled) return;
           const ok = q.check(inp.value);
           $('#sub').disabled = true; inp.disabled = true;
-          feedback(q, ok, ok ? '' : '<div>Your answer: ' + esc(inp.value || '(empty)') + '<br>Correct: ' + q.answerHtml + '</div>');
+          const ref = q.pyRef || (q.inputKind === 'py' && q.item && q.item.py);
+          feedback(q, ok, ok ? '' : '<div>Your answer: ' + esc(inp.value || '(empty)') + '<br>Correct: ' + q.answerHtml + '</div>' + (ref ? CH.pyDiff(inp.value, ref) : ''));
         };
         $('#sub').onclick = go; inp.onkeydown = e => { if (e.key === 'Enter') go(); };
         inp.focus();
+      } else if (q.type === 'multi') {
+        const ins = $$('[data-f]');
+        let last = ins[0];
+        ins.forEach((x, k) => { x.onfocus = () => { last = x; }; x.onkeydown = e => { if (e.key === 'Enter') { if (k + 1 < ins.length) ins[k + 1].focus(); else go(); } }; });
+        $$('[data-ins]').forEach(b => b.onclick = () => { const t = ins[+b.dataset.to] || last; t.value += b.dataset.ins; t.focus(); });
+        const go = () => {
+          if ($('#sub').disabled) return;
+          $('#sub').disabled = true; ins.forEach(x => { x.disabled = true; });
+          const res = q.fields.map((f, k) => Object.assign({ f, v: ins[k].value }, f.check(ins[k].value)));
+          const ok = res.every(r => r.ok);
+          const parts = res.map(r => '<div class="part ' + (r.ok ? 'ok' : 'bad') + '">' + (r.ok ? '✓ ' : '✗ ') + '<b>' + esc(r.f.label) + '</b>' +
+            (r.ok ? '' : '<br>You: ' + esc(r.v || '(empty)') + '<br>Answer: ' + r.f.answerHtml + (r.note ? '<div>' + r.note + '</div>' : '')) + '</div>').join('');
+          /* the English check is loose: let the learner overrule it when only English parts failed */
+          const canOverride = !ok && res.every(r => r.ok || r.f.loose) && res.some(r => r.v.trim());
+          feedback(q, ok, parts + (canOverride ? '<button class="btn alt" id="ovr">My English means the same: count it</button>' : ''));
+          const o = $('#ovr');
+          if (o) o.onclick = () => { score++; missed.splice(missed.indexOf(q), 1); o.outerHTML = '<div class="hint">Counted as correct.</div>'; };
+        };
+        $('#sub').onclick = go;
+        ins[0].focus();
       } else if (q.type === 'order') {
         const picked = [];
         const redraw = () => {
@@ -467,7 +509,7 @@
     if ((d.history || []).length) { h += '<h3>Recent quizzes</h3><div class="card">'; d.history.slice().reverse().slice(0, 8).forEach(x => { h += '<div>' + esc(x.title) + ' — ' + x.score + '/' + x.n + ' <small>' + esc(x.scope) + '</small></div>'; }); h += '</div>'; }
     h += '<h3>Settings</h3><div class="card"><label class="sw"><span>Show pinyin hints</span><input type="checkbox" data-s="showPy" ' + (CH.settings.showPy ? 'checked' : '') + '></label>' +
       '<label class="sw"><span>Strict tone marks when typing pinyin</span><input type="checkbox" data-s="strict" ' + (CH.settings.strict ? 'checked' : '') + '></label>' +
-      '<p>Questions per quiz: <b id="nv">' + CH.settings.n + '</b></p><input type="range" min="5" max="30" step="5" value="' + CH.settings.n + '" id="nr">' +
+      '<p>Questions per quiz: <b id="nv">' + CH.settings.n + '</b></p><input type="range" min="5" max="50" step="5" value="' + CH.settings.n + '" id="nr">' +
       '<p>Speech speed: <b id="rv">' + CH.tts.rate.toFixed(2) + '</b></p><input type="range" min="0.4" max="1.2" step="0.05" value="' + CH.tts.rate + '" id="rr">' +
       '<p>Voice:</p><select id="vs"></select><p class="hint" id="vh"></p><button class="btn alt" id="tv">🔊 Test voice (你好，我是你的汉语老师)</button><br><br><button class="btn alt" id="rs">Reset progress</button></div>';
     app.innerHTML = h;
@@ -478,7 +520,7 @@
     fillV(); document.addEventListener('tts-voices', fillV, { once: true });
     $('#vs').onchange = e => CH.tts.setVoice(e.target.value);
     $('#tv').onclick = () => say('你好，我是你的汉语老师');
-    $('#rs').onclick = () => { if (confirm('Reset all progress?')) { CH.stats.reset(); routes.progress(); } };
+    $('#rs').onclick = () => { if (confirm('Reset all progress?')) { CH.stats.reset(); CH.cover.reset(); routes.progress(); } };
   };
 
   route();

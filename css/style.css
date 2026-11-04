@@ -57,3 +57,5 @@ select,input[type=range]{width:100%;font:inherit;padding:10px;border-radius:10px
 label.sw{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
 table.t{width:100%;border-collapse:collapse}.t td,.t th{padding:6px;border-bottom:1px solid var(--line);text-align:left}
 @media(min-width:600px){.choices.hanchoice{grid-template-columns:repeat(4,1fr)}}
+.flabel{display:block;text-align:left;font-weight:600;margin:12px 0 4px}
+.part{margin:6px 0;padding:6px 8px;border-radius:8px;border-left:4px solid var(--line)}.part.ok{border-left-color:#2e9e5b}.part.bad{border-left-color:#d0453a}

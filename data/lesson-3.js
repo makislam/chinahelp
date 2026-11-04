@@ -43,6 +43,29 @@ window.LESSONS[3] = {
     ]},
     {title:"Listen and repeat (听述)", lines:[
       {sp:"", zh:"那是谁？那是陈老师。她是中国人。这是我朋友，他不是老师，他是医生。", py:"Nà shì shéi? Nà shì Chén lǎoshī. Tā shì Zhōngguó rén. Zhè shì wǒ péngyou, tā bú shì lǎoshī, tā shì yīshēng.", en:"Who is that? That is Teacher Chen. She is Chinese. This is my friend; he is not a teacher, he is a doctor."}
+    ]},
+    /* recombined dialogues in the style of Quiz 2 (lessons 1-3: family, jobs, nationality; 他/她, 奶奶/外婆, 不是 bú shì) */
+    {title:"Quiz 2 practice 1 - Grandmothers", lines:[
+      {sp:"A", zh:"她外婆是中国人，我奶奶也是。", py:"Tā wàipó shì Zhōngguó rén, wǒ nǎinai yě shì.", en:"Her maternal grandmother is Chinese, and so is my paternal grandmother."},
+      {sp:"B", zh:"他奶奶是中国人吗？", py:"Tā nǎinai shì Zhōngguó rén ma?", en:"Is his paternal grandmother Chinese?"},
+      {sp:"A", zh:"不是，他外婆是中国人。", py:"Bú shì, tā wàipó shì Zhōngguó rén.", en:"No, his maternal grandmother is Chinese."}
+    ]},
+    {title:"Quiz 2 practice 2 - Jobs", lines:[
+      {sp:"A", zh:"你爸爸是医生吗？", py:"Nǐ bàba shì yīshēng ma?", en:"Is your dad a doctor?"},
+      {sp:"B", zh:"不是，我妈妈是。", py:"Bú shì, wǒ māma shì.", en:"No, my mom is."},
+      {sp:"A", zh:"你爸爸也是老师吗？", py:"Nǐ bàba yě shì lǎoshī ma?", en:"Is your dad a teacher too?"},
+      {sp:"B", zh:"我爸爸妈妈都是外语老师。", py:"Wǒ bàba māma dōu shì wàiyǔ lǎoshī.", en:"My dad and mom are both foreign language teachers."}
+    ]},
+    {title:"Quiz 2 practice 3 - Boyfriend and girlfriend", lines:[
+      {sp:"A", zh:"你男朋友是医生吗？", py:"Nǐ nán péngyou shì yīshēng ma?", en:"Is your boyfriend a doctor?"},
+      {sp:"B", zh:"他不是医生，他是外语老师。", py:"Tā bú shì yīshēng, tā shì wàiyǔ lǎoshī.", en:"He is not a doctor, he is a foreign language teacher."},
+      {sp:"A", zh:"他女朋友是医生，不是老师。", py:"Tā nǚ péngyou shì yīshēng, bú shì lǎoshī.", en:"His girlfriend is a doctor, not a teacher."}
+    ]},
+    {title:"Quiz 2 practice 4 - Who and which country", lines:[
+      {sp:"A", zh:"谁是陈老师？", py:"Shéi shì Chén lǎoshī?", en:"Who is Teacher Chen?"},
+      {sp:"B", zh:"她是陈老师。", py:"Tā shì Chén lǎoshī.", en:"She is Teacher Chen."},
+      {sp:"A", zh:"她妈妈是哪国人？", py:"Tā māma shì nǎ guó rén?", en:"Which country is her mom from?"},
+      {sp:"B", zh:"她妈妈是中国人。", py:"Tā māma shì Zhōngguó rén.", en:"Her mom is Chinese."}
     ]}
   ],
   phrases: [

@@ -36,6 +36,37 @@ window.LESSONS[2] = {
       {sp:"哥哥", zh:"我要咖啡。", py:"Wǒ yào kāfēi.", en:"I want coffee."},
       {sp:"弟弟", zh:"我也要咖啡。", py:"Wǒ yě yào kāfēi.", en:"I want coffee, too."},
       {sp:"丁力波", zh:"好，我们都喝咖啡。", py:"Hǎo, wǒmen dōu hē kāfēi.", en:"OK, we will all drink coffee."}
+    ]},
+    /* recombined dialogues in the style of Quiz 1 (lessons 1-2 vocabulary) */
+    {title:"Quiz practice 1 - Family", lines:[
+      {sp:"A", zh:"你爸爸妈妈好吗？", py:"Nǐ bàba māma hǎo ma?", en:"How are your dad and mom?"},
+      {sp:"B", zh:"他们都很好。", py:"Tāmen dōu hěn hǎo.", en:"They are both very well."},
+      {sp:"A", zh:"你女朋友忙吗？", py:"Nǐ nǚ péngyou máng ma?", en:"Is your girlfriend busy?"},
+      {sp:"B", zh:"她不忙。", py:"Tā bù máng.", en:"She is not busy."}
+    ]},
+    {title:"Quiz practice 2 - Brothers", lines:[
+      {sp:"A", zh:"哥哥，你好吗？", py:"Gēge, nǐ hǎo ma?", en:"How are you, older brother?"},
+      {sp:"B", zh:"我很好。", py:"Wǒ hěn hǎo.", en:"I'm very well."},
+      {sp:"A", zh:"我弟弟好吗？", py:"Wǒ dìdi hǎo ma?", en:"How is my younger brother?"},
+      {sp:"B", zh:"他很忙。", py:"Tā hěn máng.", en:"He is very busy."}
+    ]},
+    {title:"Quiz practice 3 - Drinks", lines:[
+      {sp:"A", zh:"你们要咖啡吗？", py:"Nǐmen yào kāfēi ma?", en:"Do you (plural) want coffee?"},
+      {sp:"B", zh:"他要，我不要。", py:"Tā yào, wǒ bú yào.", en:"He wants some, I don't."},
+      {sp:"A", zh:"你喝咖啡吗？", py:"Nǐ hē kāfēi ma?", en:"Do you drink coffee?"},
+      {sp:"B", zh:"我不喝咖啡，我喝茶。", py:"Wǒ bù hē kāfēi, wǒ hē chá.", en:"I don't drink coffee, I drink tea."}
+    ]},
+    {title:"Quiz practice 4 - Friends", lines:[
+      {sp:"A", zh:"你男朋友好吗？", py:"Nǐ nán péngyou hǎo ma?", en:"How is your boyfriend?"},
+      {sp:"B", zh:"他很好。", py:"Tā hěn hǎo.", en:"He is very well."},
+      {sp:"A", zh:"他忙吗？", py:"Tā máng ma?", en:"Is he busy?"},
+      {sp:"B", zh:"他不忙，我很忙。", py:"Tā bù máng, wǒ hěn máng.", en:"He isn't busy; I am very busy."}
+    ]},
+    {title:"Quiz practice 5 - Who wants coffee?", lines:[
+      {sp:"A", zh:"你哥哥要咖啡吗？", py:"Nǐ gēge yào kāfēi ma?", en:"Does your older brother want coffee?"},
+      {sp:"B", zh:"他要咖啡。", py:"Tā yào kāfēi.", en:"He wants coffee."},
+      {sp:"A", zh:"你弟弟呢？", py:"Nǐ dìdi ne?", en:"And your younger brother?"},
+      {sp:"B", zh:"他也要咖啡。我们都喝咖啡。", py:"Tā yě yào kāfēi. Wǒmen dōu hē kāfēi.", en:"He wants coffee too. We all drink coffee."}
     ]}
   ],
   phrases: [
@@ -89,8 +120,20 @@ window.LESSONS[2] = {
     {zh:"可", py:"kě", en:"can, may", note:"5 strokes"},
     {zh:"吗", py:"ma", en:"question particle", note:"traditional 嗎; 吗 = 口 + 马 (口 = speaking, 马 = sound)"},
     {zh:"呢", py:"ne", en:"modal particle", note:"呢 = 口 + 尼 (口 = speaking, 尼 = sound)"},
-    {zh:"妈", py:"mā", en:"mom (in 妈妈)", note:"traditional 媽; 妈 = 女 + 马 (女 = woman, 马 = sound)"},
-    {zh:"哥", py:"gē", en:"elder brother (in 哥哥)", note:"哥 = 可 + 可"}
+    {zh:"妈", py:"mā", en:"mom; mother (in 妈妈)", note:"traditional 媽; 妈 = 女 + 马 (女 = woman, 马 = sound)"},
+    {zh:"哥", py:"gē", en:"elder brother (in 哥哥)", note:"哥 = 可 + 可"},
+    {zh:"他", py:"tā", en:"he; him", note:"他 = 亻 (person) + 也"},
+    {zh:"她", py:"tā", en:"she; her", note:"她 = 女 (woman) + 也"},
+    {zh:"男", py:"nán", en:"male", note:"男 = 田 (field) + 力 (strength)"},
+    {zh:"朋", py:"péng", en:"friend (in 朋友)", note:"朋 = 月 + 月"},
+    {zh:"日", py:"rì", en:"sun; day", note:"tested in Quiz 1"},
+    {zh:"月", py:"yuè", en:"moon; month", note:"tested in Quiz 1"},
+    {zh:"明", py:"míng", en:"bright", note:"明 = 日 + 月 (sun + moon); tested in Quiz 1"},
+    {zh:"水", py:"shuǐ", en:"water", note:"written as 氵 on the left side of a character; tested in Quiz 1"},
+    {zh:"酒", py:"jiǔ", en:"alcohol; liquor; wine", note:"酒 = 氵 + 酉; tested in Quiz 1"},
+    {zh:"骂", py:"mà", en:"to scold; to curse", note:"骂 = 口口 + 马 (马 gives the sound); tested in Quiz 1"},
+    {zh:"果", py:"guǒ", en:"fruit", note:"果 = 田 + 木 (fruit on a tree); tested in Quiz 1"},
+    {zh:"茶", py:"chá", en:"tea", note:"from Quiz 1: 我不喝咖啡，我喝茶。"}
   ],
   strokes: [],
   pron: {

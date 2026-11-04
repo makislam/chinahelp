@@ -73,6 +73,10 @@
         if (Array.from(c.zh).length === 1 && !seenChar.has(c.zh)) {
           seenChar.add(c.zh);
           DB.chars.push({ id: 'c:' + c.zh, kind: 'char', zh: c.zh, py: c.py, en: c.en || '', note: c.note || '', lesson: n });
+        } else if (c.en) {
+          /* a character first seen inside a word has no meaning (妈 from 妈妈) or only a grammar note (吗): use the character list's */
+          const ex = DB.chars.find(x => x.zh === c.zh);
+          if (ex && (!ex.en || ex.en[0] === '(')) { ex.en = c.en; if (c.note) ex.note = c.note; }
         }
       });
       /* sentences from texts + phrases */
